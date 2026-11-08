@@ -7,6 +7,10 @@ class PageContent(models.Model):
         ('vault', 'Vault'),
         ('community', 'Community'),
         ('clips', 'Clips'),
+        ('home', 'Home'),
+        ('the_story', 'The_story'),
+        ('meet_the_guardians', 'Meet_the_guardians'),
+        ('books_adventure', 'Books_adventure'),
     )
 
     page_name = models.CharField(

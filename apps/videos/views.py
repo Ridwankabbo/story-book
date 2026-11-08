@@ -37,7 +37,15 @@ class PollOfWeek(APIView):
     permission_classes=[A]
     
     def get(self, request):
-        poll = Poll.objects.get(poll_of_week=True)
+        try:
+            poll = Poll.objects.get(poll_of_week=True)
+        except Poll.DoesNotExist:
+            return Response({
+                "message":"No poll selected for this week",
+            },
+            status=status.HTTP_404_NOT_FOUND
+        )
+            
         serialiser = PollSerializer(poll)
         return Response(serialiser.data)
 

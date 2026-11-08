@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 from unfold.admin import ModelAdmin
-from .models import PageContent, VehiclesCategoryImage
+from .models import PageContent, VehiclesCategory, VehiclesCategoryImage
 
 
 class MultiFileInput(forms.ClearableFileInput):
@@ -40,10 +40,24 @@ class CategoryImageAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class VehiclesCategoryImageInline(admin.TabularInline):
+    model = VehiclesCategoryImage
+    extra = 3
+    fields = ('image', 'image_alt')
+
+
 @admin.register(PageContent)
 class PageContentAdmin(ModelAdmin):
     list_display = ('page_name', 'title', 'subtitle', 'updated_at')
     readonly_fields = ('updated_at',)
+
+
+@admin.register(VehiclesCategory)
+class VehiclesCategoryAdmin(ModelAdmin):
+    inlines = [VehiclesCategoryImageInline]
+    list_display = ('category', 'created_at', 'updated_at')
+    search_fields = ('category',)
+    readonly_fields = ('created_at', 'updated_at')
 
 
 @admin.register(VehiclesCategoryImage)
@@ -51,19 +65,4 @@ class CategoryImageAdmin(ModelAdmin):
     form = CategoryImageAdminForm
     list_display = ('category', 'image_alt', 'updated_at')
     readonly_fields = ('created_at', 'updated_at')
-    list_filter = ('category',)
-
-    def save_model(self, request, obj, form, change):
-        files = request.FILES.getlist('image') or form.cleaned_data.get('image') or []
-        if files:
-            category = form.cleaned_data.get('category')
-            image_alt = form.cleaned_data.get('image_alt', '')
-            for file in files:
-                VehiclesCategoryImage.objects.create(
-                    category=category,
-                    image=file,
-                    image_alt=image_alt,
-                )
-            return
-
-        super().save_model(request, obj, form, change)
+    list_filter = ('category__category',)

@@ -29,7 +29,11 @@ class PageContent(models.Model):
         return f"{self.get_page_name_display()} - {self.title}"
 
 
-class VehiclesCategoryImage(models.Model):
+from django.db import models
+
+
+class VehiclesCategory(models.Model):
+
     CATEGORY_CHOICES = (
         ('phantom_falcon', 'Phantom Falcon'),
         ('atlas_rover', 'Atlas Rover'),
@@ -39,17 +43,49 @@ class VehiclesCategoryImage(models.Model):
     category = models.CharField(
         max_length=50,
         choices=CATEGORY_CHOICES,
-        help_text="Which category this image belongs to"
+        unique=True
     )
-    image = models.ImageField(upload_to='template_info/categories/', blank=True, null=True)
-    image_alt = models.CharField(max_length=255, blank=True, default='')
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['category']
+        verbose_name = 'Vehicle Category'
+        verbose_name_plural = 'Vehicle Categories'
+
+    def __str__(self):
+        return self.get_category_display()
+
+
+class VehiclesCategoryImage(models.Model):
+    category = models.ForeignKey(
+        VehiclesCategory,
+        on_delete=models.CASCADE,
+        related_name='images',
+        null=True,
+        blank=True
+    )
+
+    image = models.ImageField(
+        upload_to='template_info/categories/',
+        blank=True,
+        null=True
+    )
+
+    image_alt = models.CharField(
+        max_length=255,
+        blank=True,
+        default=''
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['category', '-created_at']
         verbose_name = 'Category Image'
         verbose_name_plural = 'Category Images'
 
     def __str__(self):
-        return self.get_category_display()
+        return f"{self.category} - Image {self.pk}"

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PageContent, VehiclesCategoryImage
+from .models import PageContent, VehiclesCategory, VehiclesCategoryImage
 
 
 class PageContentSerializer(serializers.ModelSerializer):
@@ -11,12 +11,16 @@ class PageContentSerializer(serializers.ModelSerializer):
 
 
 class CategoryImageSerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField()
     category_name = serializers.SerializerMethodField()
     image = serializers.ImageField()
 
     class Meta:
         model = VehiclesCategoryImage
-        fields = ['category', 'category_name', 'image', 'image_alt', 'updated_at']
+        fields = ['id', 'category', 'category_name', 'image', 'image_alt', 'updated_at']
+
+    def get_category(self, obj):
+        return obj.category.category if obj.category else None
 
     def get_category_name(self, obj):
-        return obj.get_category_display()
+        return obj.category.get_category_display() if obj.category else None

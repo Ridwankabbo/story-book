@@ -12,7 +12,7 @@ class PageContentDetailView(generics.RetrieveAPIView):
 
 
 class CategoryImageListAPIView(generics.ListAPIView):
-    queryset = VehiclesCategoryImage.objects.all()
+    queryset = VehiclesCategoryImage.objects.select_related('category').all()
     serializer_class = CategoryImageSerializer
     permission_classes = [AllowAny]
 
@@ -22,5 +22,7 @@ class CategoryImageDetailAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        category = self.kwargs.get('category')
-        return VehiclesCategoryImage.objects.filter(category=category).order_by('-updated_at')
+        category_slug = self.kwargs.get('category')
+        return VehiclesCategoryImage.objects.select_related('category').filter(
+            category__category=category_slug
+        ).order_by('-updated_at')

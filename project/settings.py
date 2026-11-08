@@ -566,9 +566,9 @@ UNFOLD = {
                         "permission": lambda request: request.user.is_superuser,
                     },
                     {
-                        "title": _("Vehicles Category Images"),
-                        "icon": _icon_for_title("Category Images"),
-                        "link": reverse_lazy("admin:template_info_vehiclescategoryimage_changelist"),
+                        "title": _("Vehicles Categories"),
+                        "icon": _icon_for_title("Vehicle Categories"),
+                        "link": reverse_lazy("admin:template_info_vehiclescategory_changelist"),
                         "badge_variant": "info",
                         "badge_style": "solid",
                         "permission": lambda request: request.user.is_superuser,

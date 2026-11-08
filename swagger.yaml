@@ -1,0 +1,976 @@
+swagger: '1.0'
+info:
+  title: CodeHydra API
+  description: API documentation for CodeHydra project
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+basePath: /api/v1
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /account/account/change-password/:
+    post:
+      operationId: account_account_change-password_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/account/deactivate/:
+    post:
+      operationId: account_account_deactivate_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/account/delete/:
+    post:
+      operationId: account_account_delete_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/account/profile/update/:
+    put:
+      operationId: account_account_profile_update_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/change-password/:
+    post:
+      operationId: account_change-password_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/deactivate/:
+    post:
+      operationId: account_deactivate_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/delete/:
+    post:
+      operationId: account_delete_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/login/:
+    post:
+      operationId: account_login_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/logout/:
+    post:
+      operationId: account_logout_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/password-reset/complete/:
+    post:
+      operationId: account_password-reset_complete_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/password-reset/request/:
+    post:
+      operationId: account_password-reset_request_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/password-reset/verify/:
+    post:
+      operationId: account_password-reset_verify_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/profile/update/:
+    put:
+      operationId: account_profile_update_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - account
+    parameters: []
+  /account/signup/:
+    post:
+      operationId: account_signup_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserCreate'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserCreate'
+      tags:
+      - account
+    parameters: []
+  /alhera-kit-request/:
+    post:
+      operationId: alhera-kit-request_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - alhera-kit-request
+    parameters: []
+  /books/:
+    get:
+      operationId: books_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Book'
+      tags:
+      - books
+    parameters: []
+  /books/{id}/:
+    get:
+      operationId: books_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Book'
+      tags:
+      - books
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this books.
+      required: true
+      type: integer
+  /cart/:
+    get:
+      operationId: cart_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - cart
+    parameters: []
+  /cart/add/:
+    post:
+      operationId: cart_add_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - cart
+    parameters: []
+  /cart/items/{cart_item_id}/:
+    patch:
+      operationId: cart_items_partial_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - cart
+    parameters:
+    - name: cart_item_id
+      in: path
+      required: true
+      type: string
+  /cart/remove/{item_id}/:
+    delete:
+      operationId: cart_remove_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - cart
+    parameters:
+    - name: item_id
+      in: path
+      required: true
+      type: string
+  /checkout/cart-session/:
+    post:
+      operationId: checkout_cart-session_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - checkout
+    parameters: []
+  /checkout/create-session/:
+    post:
+      operationId: checkout_create-session_create
+      description: |-
+        POST body:
+        {
+          "order_type": "book" | "product",
+          "id": 12,                 # Book id or Product id
+          "quantity": 1,
+          "customer_name": "Riyad",
+          "email": "test@test.com",
+          "address": "Dhaka",
+          "city": "Dhaka",
+          "country": "Bangladesh"
+        }
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - checkout
+    parameters: []
+  /guardians/:
+    get:
+      operationId: guardians_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GuardianList'
+      tags:
+      - guardians
+    parameters: []
+  /guardians/{id}/:
+    get:
+      operationId: guardians_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/GuardianDetail'
+      tags:
+      - guardians
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this guardian.
+      required: true
+      type: integer
+  /login/:
+    post:
+      operationId: login_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - login
+    parameters: []
+  /logout/:
+    post:
+      operationId: logout_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - logout
+    parameters: []
+  /newsletter-subscription/:
+    post:
+      operationId: newsletter-subscription_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - newsletter-subscription
+    parameters: []
+  /orders/:
+    get:
+      operationId: orders_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - orders
+    parameters: []
+  /orders/timeline/:
+    get:
+      operationId: orders_timeline_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - orders
+    parameters: []
+  /orders/{order_id}/progress/:
+    get:
+      operationId: orders_progress_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - orders
+    parameters:
+    - name: order_id
+      in: path
+      required: true
+      type: string
+  /partnership-inquiry/:
+    post:
+      operationId: partnership-inquiry_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - partnership-inquiry
+    parameters: []
+  /password-reset/complete/:
+    post:
+      operationId: password-reset_complete_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - password-reset
+    parameters: []
+  /password-reset/request/:
+    post:
+      operationId: password-reset_request_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - password-reset
+    parameters: []
+  /password-reset/verify/:
+    post:
+      operationId: password-reset_verify_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - password-reset
+    parameters: []
+  /polls/:
+    get:
+      operationId: polls_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Poll'
+      tags:
+      - polls
+    parameters: []
+  /polls/vote/:
+    post:
+      operationId: polls_vote_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - polls
+    parameters: []
+  /products/:
+    get:
+      operationId: products_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+      - products
+    parameters: []
+  /products/{id}/:
+    get:
+      operationId: products_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+      - products
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this product.
+      required: true
+      type: integer
+  /quiz-sets/:
+    get:
+      operationId: quiz-sets_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - quiz-sets
+    parameters: []
+  /quiz/{quiz_id}/questions/:
+    get:
+      operationId: quiz_questions_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - quiz
+    parameters:
+    - name: quiz_id
+      in: path
+      required: true
+      type: string
+  /quiz/{quiz_id}/submit/:
+    post:
+      operationId: quiz_submit_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - quiz
+    parameters:
+    - name: quiz_id
+      in: path
+      required: true
+      type: string
+  /signup/:
+    post:
+      operationId: signup_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserCreate'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserCreate'
+      tags:
+      - signup
+    parameters: []
+  /stripe/webhook/:
+    post:
+      operationId: stripe_webhook_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - stripe
+    parameters: []
+  /videos/:
+    get:
+      operationId: videos_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Video'
+      tags:
+      - videos
+    parameters: []
+definitions:
+  UserCreate:
+    required:
+    - full_name
+    - email
+    - password
+    - password2
+    type: object
+    properties:
+      full_name:
+        title: Full name
+        type: string
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 255
+        minLength: 1
+      profile_pic:
+        title: Profile pic
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      dob:
+        title: Dob
+        type: string
+        format: date
+        x-nullable: true
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      password2:
+        title: Password2
+        type: string
+        minLength: 1
+  Book:
+    required:
+    - title
+    - discription
+    - price
+    - book_type
+    - publisher
+    - language
+    - dimensions
+    - stock_quantity
+    - amazon_url
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      uid:
+        title: Uid
+        type: string
+        format: uuid
+        readOnly: true
+        x-nullable: true
+      title:
+        title: Title
+        type: string
+        maxLength: 200
+        minLength: 1
+      discription:
+        title: Discription
+        type: string
+        minLength: 1
+      price:
+        title: Price
+        type: string
+        format: decimal
+      book_type:
+        title: Book type
+        type: string
+        maxLength: 50
+        minLength: 1
+      publisher:
+        title: Publisher
+        type: string
+        maxLength: 100
+        minLength: 1
+      language:
+        title: Language
+        type: string
+        maxLength: 30
+        minLength: 1
+      dimensions:
+        title: Dimensions
+        type: string
+        maxLength: 50
+        minLength: 1
+      stock_quantity:
+        title: Stock quantity
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      amazon_url:
+        title: Amazon url
+        type: string
+        format: uri
+        maxLength: 200
+        minLength: 1
+      cover_image:
+        title: Cover image
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+  GuardianList:
+    required:
+    - codename
+    - name
+    - age
+    - nationality
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      codename:
+        title: Codename
+        type: string
+        maxLength: 50
+        minLength: 1
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      age:
+        title: Age
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      nationality:
+        title: Nationality
+        type: string
+        maxLength: 50
+        minLength: 1
+      profile_photo:
+        title: Profile photo
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      gadget:
+        title: Gadget
+        type: string
+        readOnly: true
+  ProductAttribute:
+    required:
+    - name
+    - value
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      value:
+        title: Value
+        type: string
+        maxLength: 255
+        minLength: 1
+  Product:
+    required:
+    - title
+    - price
+    - stock_quantity
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      uid:
+        title: Uid
+        type: string
+        format: uuid
+        readOnly: true
+        x-nullable: true
+      title:
+        title: Title
+        type: string
+        maxLength: 255
+        minLength: 1
+      subtitle:
+        title: Subtitle
+        type: string
+        maxLength: 255
+        x-nullable: true
+      description:
+        title: Description
+        type: string
+      price:
+        title: Price
+        type: string
+        format: decimal
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        format: uri
+      category:
+        title: Category
+        type: string
+        enum:
+        - gear
+        - other
+        x-nullable: true
+      stock_quantity:
+        title: Stock quantity
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      data:
+        title: Data
+        type: object
+      attrs:
+        type: array
+        items:
+          $ref: '#/definitions/ProductAttribute'
+        readOnly: true
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  GuardianDetail:
+    required:
+    - name
+    - age
+    - about
+    - nationality
+    - roll_number
+    - personality
+    - strengths
+    - weaknesses
+    - aspirational_angle
+    - codename
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      gadget:
+        $ref: '#/definitions/Product'
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      age:
+        title: Age
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      about:
+        title: About
+        type: string
+        minLength: 1
+      profile_photo:
+        title: Profile photo
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      nationality:
+        title: Nationality
+        type: string
+        maxLength: 50
+        minLength: 1
+      roll_number:
+        title: Roll number
+        type: string
+        maxLength: 20
+        minLength: 1
+      personality:
+        title: Personality
+        type: string
+        maxLength: 100
+        minLength: 1
+      strengths:
+        title: Strengths
+        type: string
+        maxLength: 200
+        minLength: 1
+      weaknesses:
+        title: Weaknesses
+        type: string
+        maxLength: 200
+        minLength: 1
+      aspirational_angle:
+        title: Aspirational angle
+        type: string
+        maxLength: 200
+        minLength: 1
+      codename:
+        title: Codename
+        type: string
+        maxLength: 50
+        minLength: 1
+  Poll:
+    required:
+    - question
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      question:
+        title: Question
+        type: string
+        maxLength: 255
+        minLength: 1
+      options:
+        title: Options
+        type: string
+        readOnly: true
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  Video:
+    required:
+    - title
+    - video_type
+    - duration
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: Title
+        type: string
+        maxLength: 255
+        minLength: 1
+      subtitle:
+        title: Subtitle
+        type: string
+        maxLength: 255
+      video_type:
+        title: Video type
+        type: string
+        enum:
+        - trailer
+        - preview
+        - episode
+      duration:
+        title: Duration
+        type: string
+        maxLength: 10
+        minLength: 1
+      video_file:
+        title: Video file
+        type: string
+        readOnly: true
+        format: uri
+      thumbnail:
+        title: Thumbnail
+        type: string
+        readOnly: true
+        format: uri
